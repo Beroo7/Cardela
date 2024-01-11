@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Login
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid bg-white mt-5 border-top border-bottom shadow">
+        <div class="container">
+
+            {% if form.errors %}
+                {% for field, errors in form.errors.items() %}
+                    {%  for error in errors %}
+                        <div class="alert alert-danger">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+
+            <form method="post">
+                {{ form.hidden_tag() }}
+
+                {{ form.username.label }}
+                {{ form.username(class="form-control border-dark my-3") }}
+
+                {{ form.password.label }}
+                {{ form.password(class="form-control border-dark my-3") }}
+
+                {{ form.submit(class="btn btn-primary mt-3") }}
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

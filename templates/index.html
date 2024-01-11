@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid bg-white border-top border-bottom shadow">
+        <div class="container">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                  <img style="height: 540px; width: 960px;" src="https://www.motortrend.com/uploads/sites/11/2020/06/Beautiful-Chevrolet-showfloor-1967.jpg" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img style="height: 540px; width: 960px;" src="https://wallpapercave.com/wp/wp12594207.jpg" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img style="height: 540px; width: 960px;" src="https://imagescdn.dealercarsearch.com/dealerimages/15310/24616/fxslide1.jpg" class="d-block w-100" alt="...">
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+<div class="container-fluid bg-white mt-5 border-top border-bottom shadow">
+    <div class="container mb-4 shadow">
+        <h1>Recent Items</h1>
+            <div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1 gy-3 mt-3">
+    {% for product in products %}
+    <div class="col">
+        <div class="card" style="width: 18rem;">
+            <img src="/static/{{ product.img }}"
+                 class="card-img-top"
+                 alt="...">
+            <div class="card-body">
+                <p class="card-title">{{ product.name }}</p>
+                <h3>${{ product.price }}</h3>
+                <a href="/product/{{ product.id }}" class="btn btn-primary">
+                    View Product
+                </a>
+            </div>
+            {% if current_user.role == "admin" %}
+            <li class="list-group-item">
+                <a href="/edit_product/{{ product.id }}" class="btn btn-outline-info m-3 mt-0"> Edit </a>
+                    <a href="/delete_product/{{ product.id }}" class="btn btn-danger m-3 mt-0"> Delete </a>
+            </li>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+        </div>
+    </div>
+
+{% endblock %}

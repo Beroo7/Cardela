@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Register
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid bg-white mt-5 border-top border-bottom shadow">
+        <div class="container">
+
+            {% if form.errors %}
+                {% for field, errors in form.errors.items() %}
+                    {%  for error in errors %}
+                        <div class="alert alert-danger">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+
+            <form method="post">
+                {{ form.hidden_tag() }}
+
+                {{ form.username.label }}
+                {{ form.username(class="form-control border-dark my-3") }}
+
+                {{ form.password.label }}
+                {{ form.password(class="form-control border-dark my-3") }}
+
+                {{ form.repeat_password.label }}
+                {{ form.repeat_password(class="form-control border-dark my-3") }}
+
+                {{ form.gender.label }}
+                {{ form.gender(class="mt-2 mb-3")}}
+
+                {{ form.birthday.label }}
+                {{ form.birthday(class="form-control border-dark my-3") }}
+
+                {{ form.country(class="form-select border-dark my-3") }}
+
+                {{ form.submit(class="btn btn-warning mt-3 mb-4") }}
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

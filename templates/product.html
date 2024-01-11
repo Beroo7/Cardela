@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ product.name }}
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid bg-white mt-5 border-top border-bottom shadow">
+      <div class="container">
+          <img src="/static/{{ product.img }}" width="400px">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th scope="row">Name</th>
+                  <td>{{ product.name }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Price</th>
+                  <td>{{ product.price}}</td>
+                </tr>
+              </tbody>
+            </table>
+        <a href="/product/{{ product.id }}" class="btn btn-success mb-4">
+                    Contact Seller
+                </a>
+      </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Adding Product
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid bg-white mt-5 border-top border-bottom shadow">
+
+        <div class="container">
+            <h2 class="mb-4">Sell your car</h2>
+            {% if form.errors %}
+                {% for field, errors in form.errors.items() %}
+                    {%  for error in errors %}
+                        <div class="alert alert-danger">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+
+            <form method="post" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                {{ form.name.label }}
+                {{ form.name(class="form-control border-dark my-3") }}
+                {{ form.price.label }}
+                {{ form.price(class="form-control border-dark my-3") }}
+                {{ form.img.label }}
+                {{ form.img(class="form-control border-dark my-3", accept=".jpg, .png, .jpeg") }}
+
+                {{ form.submit(class="btn btn-warning mt-3 mb-4") }}
+            </form>
+        </div>
+    </div>
+{% endblock %}
